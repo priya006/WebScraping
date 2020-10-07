@@ -1,4 +1,5 @@
 import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
 import java.io.IOException;
@@ -16,7 +17,9 @@ public class WebScrapper {
 
         try {
             HtmlPage htmlPage = webClient.getPage(baseUrl);
-            System.out.println(htmlPage.asXml());
+            //System.out.println(htmlPage.asXml());
+            HtmlElement element = htmlPage.getHtmlElementById("24709868");
+            System.out.println(element);
         } catch (IOException e) {
             e.printStackTrace();
         }
