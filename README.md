@@ -25,6 +25,8 @@ The list of htmlElements is scrpaed and from there using `relative xpath` looped
         </dependency>
     </dependencies>
 ```
+# Usage
+Execute the Class `WebScrapper`
 
 # Important
  Brush up your Xpath Skills :) 
