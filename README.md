@@ -28,6 +28,9 @@ The list of htmlElements is scrpaed and from there using `relative xpath` looped
 # Usage
 Execute the Class `WebScrapper`
 
+# Output
+![Output](https://github.com/priya006/WebScraping/blob/master/Output.png)
+
 # Important
  Brush up your Xpath Skills :) 
 
