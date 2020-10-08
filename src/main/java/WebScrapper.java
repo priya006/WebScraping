@@ -1,11 +1,13 @@
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gargoylesoftware.htmlunit.ElementNotFoundException;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 public class WebScrapper {
     public static void main(String[] args) {
@@ -19,48 +21,45 @@ public class WebScrapper {
         webClient.getOptions().setJavaScriptEnabled(false);
 
         try {
-            HtmlPage htmlPage = webClient.getPage(baseUrl);
-            //System.out.println(htmlPage.asXml());
-            HtmlElement element = htmlPage.getHtmlElementById("24709868");
-           //System.out.println(element);
-
+            HtmlPage htmlPage = null;
+            try {
+                htmlPage = webClient.getPage(baseUrl);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //Locate the entire hacker news and loops through the web elements you need
             List<HtmlElement> classElements = htmlPage.getByXPath("//tr[@class='athing']");
-           // System.out.println( classElements.get(2));
-           // List<HtmlElement> PositionList = htmlPage.getByXPath(".//td/span[@class='rank']");
             for(HtmlElement classElement: classElements) {
                 int position = Integer.parseInt(
                         ((HtmlElement) classElement.getFirstByXPath("./td/span"))
                                 .asText()
                                 .replace(".", ""));
 
-                String author = classElement.getFirstByXPath("//a[@class='hnuser']").toString();
-                String replace = author.replace("(?<=id\\=).*", " ");
-               // System.out.println(replace);
-                String pattern = "(?<=id\\=).*";
 
-                Pattern r = Pattern.compile(pattern);
-                Matcher m = r.matcher(author);
-                if (m.find( )) {
-                   System.out.println("Found value: " + m.group(0) );
+                    String author = ((HtmlElement) classElement
+                            .getFirstByXPath("./following-sibling::tr/td[@class='subtext']/a[@class='hnuser']"))
+                            .asText();
+                    System.out.println(author);
 
-                }else {
-                    System.out.println("NO MATCH");
+                    //asText() converts webElement to a String
+                    String firstByXPath = ((HtmlElement) classElement.getFirstByXPath("./following-sibling::tr/td[@class='subtext']/span[@class='score']")).asText();
+                  int Score = Integer.parseInt(firstByXPath.replace(" points",""));
+                    System.out.println(Score);
+             //Converting Object to Json Using Jackson library
+            HackerNewsItem hackerNewsItem = new HackerNewsItem(position,author,Score);
+                ObjectMapper objectMapper = new ObjectMapper();
+                try {
+                    String jsonString = objectMapper.writeValueAsString(hackerNewsItem);
+                    System.out.println("Json String: "+jsonString);
+                } catch (JsonProcessingException e) {
+                    e.printStackTrace();
                 }
-
-                String[] split = m.toString().split("\"");
-                System.out.println("split"+split[0]);
-
-
-
-             //   System.out.println(author);
-//                String positionString = position.getTextContent().replace(".", " ");
-//                System.out.println(positionString);
-//                int positionInt = Integer.parseInt(positionString);
-
             }
 
 
-        } catch (IOException e) {
+
+
+        } catch (ElementNotFoundException e) {
             e.printStackTrace();
         }
 

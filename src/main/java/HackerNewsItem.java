@@ -1,16 +1,16 @@
 public class HackerNewsItem {
 
     int position;
-    String title;
-    String url;
+//    String title;
+//    String url;
     String author;
     int Score;
 
     //Constructor5
-    public HackerNewsItem(int position, String title, String url, String author, int score){
+    public HackerNewsItem(int position, String author, int score){
         this.position = position;
-        this.title = title;
-        this.url = url;
+//        this.title = title;
+//        this.url = url;
         this.author = author;
         this.Score = score;
     }
@@ -24,21 +24,21 @@ public class HackerNewsItem {
         this.position = position;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
+//    public String getTitle() {
+//        return title;
+//    }
+//
+//    public void setTitle(String title) {
+//        this.title = title;
+//    }
+//
+//    public String getUrl() {
+//        return url;
+//    }
+//
+//    public void setUrl(String url) {
+//        this.url = url;
+//    }
 
     public String getAuthor() {
         return author;
@@ -64,16 +64,16 @@ public class HackerNewsItem {
 
         if (position != that.position) return false;
         if (Score != that.Score) return false;
-        if (title != null ? !title.equals(that.title) : that.title != null) return false;
-        if (url != null ? !url.equals(that.url) : that.url != null) return false;
+//        if (title != null ? !title.equals(that.title) : that.title != null) return false;
+//        if (url != null ? !url.equals(that.url) : that.url != null) return false;
         return author != null ? author.equals(that.author) : that.author == null;
     }
 
     @Override
     public int hashCode() {
         int result = position;
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + (url != null ? url.hashCode() : 0);
+//        result = 31 * result + (title != null ? title.hashCode() : 0);
+//        result = 31 * result + (url != null ? url.hashCode() : 0);
         result = 31 * result + (author != null ? author.hashCode() : 0);
         result = 31 * result + Score;
         return result;
@@ -82,8 +82,8 @@ public class HackerNewsItem {
     public String toString() {
         return "HackerNewsItem{" +
                 "position=" + position +
-                ", title='" + title + '\'' +
-                ", url='" + url + '\'' +
+//                ", title='" + title + '\'' +
+//                ", url='" + url + '\'' +
                 ", author='" + author + '\'' +
                 ", Score=" + Score +
                 '}';
