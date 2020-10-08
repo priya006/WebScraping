@@ -28,6 +28,9 @@ The list of htmlElements/WebElemnts is scraped and from there using `relative xp
 # Usage
 Execute the Class `WebScrapper`
 
+# Input
+![Input](https://github.com/priya006/WebScraping/blob/master/Input.png)
+
 # Output
 ![Output](https://github.com/priya006/WebScraping/blob/master/Output.png)
 
