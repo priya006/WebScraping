@@ -7,7 +7,7 @@ Scarping [HackerNews](https://news.ycombinator.com/) using HtmlUnit
  
 
 # Idea
-The list of htmlElements is scrpaed and from there using `relative xpath` looped inside the list of html elements and each web element is scraped using Xpath Expression. 
+The list of htmlElements/WebElemnts is scraped and from there using `relative xpath` looped inside the list of html elements and each web element is scraped using Xpath Expression. 
 
 # Maven Project Dependencies
 ```
